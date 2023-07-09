@@ -1,0 +1,76 @@
+name: Build Monitor
+
+on:
+  push: 
+    tags:
+      - v0.*.*
+    branches: [ main, feat/*, feature/* ]
+    paths:
+        - 'monitor/**'
+        - '.github/workflows/monitor.yml'
+
+  workflow_dispatch:
+
+env:
+  app: monitor
+  stage: ${{ startsWith(github.ref, 'refs/tags/v') && 'prod' || 'dev' }}
+ 
+jobs:
+  build:
+    
+    name: Build
+    runs-on: ubuntu-latest
+    outputs:
+      build_id: ${{ steps.build-ids.outputs.tag }}${{ steps.build-ids.outputs.sha }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+            fetch-depth: 0  
+        
+      - name: Get Version
+        id: version
+        run: |
+          TAG=$(git describe --tags --abbrev=0 )
+          if [ $stage = "prod" ]; 
+            then
+                SHA=
+            else
+                SHA=-$(echo ${{ github.sha }} | cut -c1-7 )
+            fi          
+          echo "tag=$TAG"  >> $GITHUB_OUTPUT
+          echo "sha=$SHA"  >> $GITHUB_OUTPUT
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Build
+        run: |
+          make build app=$app
+
+      - name: Security Scan 
+        run: |
+          make scan app=$app
+          
+  test:
+    needs:
+        - build
+    
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Unit Tests
+        run: |
+          make test app=$app
