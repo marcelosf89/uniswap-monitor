@@ -1,4 +1,4 @@
-name: Api
+name: Build Api
 
 on:
   push: 
@@ -23,8 +23,22 @@ jobs:
       build_id: ${{ steps.build-ids.outputs.tag }}${{ steps.build-ids.outputs.sha }}
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0  
+        
+      - name: Get Version
+        id: version
+        run: |
+          TAG=$(git describe --tags --abbrev=0 )
+          if [ $stage = "prod" ]; 
+            then
+                SHA=
+            else
+                SHA=-$(echo ${{ github.sha }} | cut -c1-7 )
+            fi          
+          echo "tag=$TAG"  >> $GITHUB_OUTPUT
+          echo "sha=$SHA"  >> $GITHUB_OUTPUT
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -48,8 +62,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Go
         uses: actions/setup-go@v4
