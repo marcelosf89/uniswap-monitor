@@ -16,14 +16,14 @@ build: build-common
 	@ echo clean
 	@ rm -f $(path).bin/debug/$(app)
 	@ echo building...
-	@ go build -tags debug -o "$(path).bin/debug/$(app)" $(path)$(app)/main.go
+	@ cd $(app) && go build -tags debug -o "$(path).bin/debug/$(app)" main.go
 	@ ls -lah $(path).bin/debug/$(app)
 
 build-release: build-common
 	@ echo clean
 	@ rm -f $(path).bin/release/$(app)
 	@ echo build release
-	@ CGO_ENABLED=0 go build -ldflags='-w -s -extldflags "-static"' -a -o "$(path).bin/release/$(app)" $(path)$(app)/main.go
+	@ cd $(app) && CGO_ENABLED=0 go build -ldflags='-w -s -extldflags "-static"' -a -o "$(path).bin/release/$(app)" main.go
 	@ ls -lah $(path).bin/release/$(app)
 
 
