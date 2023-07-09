@@ -35,8 +35,7 @@ test: build-common
 
 scan:
 	@ go install github.com/securego/gosec/v2/cmd/gosec@latest
-	@ gosec -fmt=sarif -out=$(app).sarif -exclude=_test -severity=medium ./$(app)/... 
-	@ echo ""
+	@ gosec -fmt=sarif -out=$(app).sarif -exclude=_test -severity=medium ./$(app)/... | 2>&1
 	@ cat $(path)$(app).sarif
 
 
