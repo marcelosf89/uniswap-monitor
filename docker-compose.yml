@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  monitornet:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - monitornet
+
+  monitorapp:
+    build:
+      context: monitor
+      dockerfile: Dockerfile
+    environment:
+      - RPC_ENDPOINT=wss://mainnet.infura.io/ws/v3/59c4fc44196840e99911c9c43617a803
+      - DATABASE_CONNECTION_STRING=mongodb://mongodb:27017
+    container_name: monitor
+    networks:
+      - monitornet
+    depends_on:
+      - mongodb
+
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_CONNECTION_STRING=mongodb://mongodb:27017
+      - PORT=80
+    container_name: api
+    ports:
+      - 3030:80
+    networks:
+      - monitornet
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
