@@ -5,10 +5,10 @@ import (
 	"os"
 	"os/signal"
 
-	"brahmafi-build-it/monitor/pkg/configurations"
-	"brahmafi-build-it/monitor/pkg/database"
-	"brahmafi-build-it/monitor/pkg/models"
-	"brahmafi-build-it/monitor/pkg/services"
+	"uniswap-monitor/monitor/pkg/configurations"
+	"uniswap-monitor/monitor/pkg/database"
+	"uniswap-monitor/monitor/pkg/models"
+	"uniswap-monitor/monitor/pkg/services"
 )
 
 func main() {

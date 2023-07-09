@@ -1,9 +1,9 @@
 package services
 
 import (
-	"brahmafi-build-it/monitor/pkg/models"
 	"context"
 	"time"
+	"uniswap-monitor/monitor/pkg/models"
 )
 
 type Monitor interface {

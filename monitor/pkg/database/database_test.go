@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"brahmafi-build-it/monitor/pkg/models"
+	"uniswap-monitor/monitor/pkg/models"
 )
 
 type MockDatabase struct {
@@ -17,7 +17,8 @@ type MockDatabase struct {
 	UpdateMonitorStateCalled  bool
 	GetMonitorStateCalled     bool
 	GetAllMonitorStatesCalled bool
-	ExpectedModel             models.Model
+	ExpectedDataPoint         models.DataPoint
+	ExpectedMonitorState      models.MonitorState
 	ExpectedField             string
 	ExpectedKey               string
 }
@@ -34,12 +35,17 @@ func (db *MockDatabase) CloseConnection() {
 	db.CloseConnectionCalled = true
 }
 
-func (db *MockDatabase) Save(model models.Model) {
+func (db *MockDatabase) SaveDataPoint(model models.DataPoint) {
 	db.SaveCalled = true
-	db.ExpectedModel = model
+	db.ExpectedDataPoint = model
 }
 
-func (db *MockDatabase) UpdateMonitorState(blockNumber uint64, token0balance string, token1balance string) {
+func (db *MockDatabase) SaveMonitorState(model models.MonitorState) {
+	db.SaveCalled = true
+	db.ExpectedMonitorState = model
+}
+
+func (db *MockDatabase) UpdateMonitorState(id string, blockNumber uint64, token0balance string, token1balance string) {
 	db.UpdateMonitorStateCalled = true
 }
 
@@ -61,7 +67,7 @@ func TestSaveMonitorState(t *testing.T) {
 
 	Init("mongodb://localhost:27017", mockDB, context.Background())
 
-	testModel := &models.MonitorState{
+	testModel := models.MonitorState{
 		Id: "1",
 	}
 
@@ -70,7 +76,25 @@ func TestSaveMonitorState(t *testing.T) {
 
 	// Assert
 	assert.True(t, mockDB.SaveCalled)
-	assert.Equal(t, testModel, mockDB.ExpectedModel)
+	assert.Equal(t, testModel, mockDB.ExpectedMonitorState)
+}
+
+func TestSaveDataPoint(t *testing.T) {
+	// Arrange
+	mockDB := &MockDatabase{}
+
+	Init("mongodb://localhost:27017", mockDB, context.Background())
+
+	testModel := models.DataPoint{
+		Id: "1",
+	}
+
+	// Act
+	SaveDataPoint(testModel)
+
+	// Assert
+	assert.True(t, mockDB.SaveCalled)
+	assert.Equal(t, testModel, mockDB.ExpectedDataPoint)
 }
 
 func TestUpdateMonitorState(t *testing.T) {
@@ -80,7 +104,7 @@ func TestUpdateMonitorState(t *testing.T) {
 	Init("mongodb://localhost:27017", mockDB, context.Background())
 
 	// Act
-	UpdateMonitorState(123456, "100", "200")
+	UpdateMonitorState("1", 123456, "100", "200")
 
 	// Assert
 	assert.True(t, mockDB.UpdateMonitorStateCalled)

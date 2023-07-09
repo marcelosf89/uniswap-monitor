@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"time"
 
-	"brahmafi-build-it/monitor/pkg/database"
-	"brahmafi-build-it/monitor/pkg/models"
+	"uniswap-monitor/monitor/pkg/database"
+	"uniswap-monitor/monitor/pkg/models"
 
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"

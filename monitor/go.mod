@@ -1,4 +1,4 @@
-module brahmafi-build-it/monitor
+module uniswap-monitor/monitor
 
 go 1.20
 

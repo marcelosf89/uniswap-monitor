@@ -1,8 +1,8 @@
 package database
 
 import (
-	"brahmafi-build-it/monitor/pkg/models"
 	"context"
+	"uniswap-monitor/monitor/pkg/models"
 )
 
 type Database interface {

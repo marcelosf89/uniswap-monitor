@@ -1,12 +1,12 @@
 package services
 
 import (
-	"brahmafi-build-it/monitor/pkg/configurations"
-	"brahmafi-build-it/monitor/pkg/models"
 	"context"
 	"fmt"
 	"math/big"
 	"strings"
+	"uniswap-monitor/monitor/pkg/configurations"
+	"uniswap-monitor/monitor/pkg/models"
 
 	"github.com/rs/zerolog/log"
 
