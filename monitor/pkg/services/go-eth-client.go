@@ -88,7 +88,7 @@ func (g *GoEthClient) GetLogs(address string, fromBlock uint64, toBlock uint64, 
 		return
 	}
 
-	log.Debug().Msg(fmt.Sprintf("--------------------------------------- \n Logs: %v \n --------------------------------------", len(logs)))
+	log.Debug().Msg(fmt.Sprintf("--------------------------------------- Logs: %v --------------------------------------", len(logs)))
 	for _, vLog := range logs {
 
 		var event models.SwapEvent
