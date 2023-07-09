@@ -8,7 +8,7 @@ up:
 
 build-common:
 	@ ls
-	@ pushd ./$(app)
+	@ pushd $(app)
 	@ go clean
 	@ go mod tidy && go mod download
 	@ go mod verify
