@@ -7,7 +7,8 @@ up:
 	@ docker-compose up
 
 build-common:
-	@ cd $(path)/$(app) 
+	@ echo "selecting module $(app)"
+	@ cd $(app) 
 	@ ls
 	@ go clean
 	@ go mod tidy && go mod download
