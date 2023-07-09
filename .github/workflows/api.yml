@@ -23,7 +23,8 @@ jobs:
       build_id: ${{ steps.build-ids.outputs.tag }}${{ steps.build-ids.outputs.sha }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
             fetch-depth: 0  
         
@@ -62,7 +63,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Set up Go
         uses: actions/setup-go@v4
