@@ -8,6 +8,7 @@ up:
 
 build-common:
 	@ cd $(path)/$(app) 
+	@ ls
 	@ go clean
 	@ go mod tidy && go mod download
 	@ go mod verify
