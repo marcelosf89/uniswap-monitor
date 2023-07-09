@@ -7,6 +7,7 @@ up:
 	@ docker-compose up
 
 build-common:
+	@ ls
 	@ pushd ./$(app)
 	@ go clean
 	@ go mod tidy && go mod download
@@ -36,6 +37,7 @@ test: build-common
 
 
 scan:
+	@ go install github.com/securego/gosec/v2/cmd/gosec@latest
 	@ gosec -fmt=sarif -out=$(app).sarif -exclude=_test -severity=medium ./$(app)/... 
 	@ echo ""
 	@ cat $(path)/$(app).sarif
