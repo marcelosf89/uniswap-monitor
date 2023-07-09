@@ -7,12 +7,11 @@ up:
 	@ docker-compose up
 
 build-common:
-	@ ls
-	@ pushd $(app)
+	@ cd $(path)/$(app) 
 	@ go clean
 	@ go mod tidy && go mod download
 	@ go mod verify
-	@ popd
+	@ cd ..
 
 
 build: build-common
