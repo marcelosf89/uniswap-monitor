@@ -1,5 +1,8 @@
 # Uniswap monitor
 
+![API](https://github.com/marcelosf89/uniswap-monitor/actions/workflows/api.yml/badge.svg)
+![Monitor](https://github.com/marcelosf89/uniswap-monitor/actions/workflows/monitor.yml/badge.svg)
+
 ## Challeger Description
 
 The objective of the assignment is to create a monitoring service for Uniswap V3 pools that continuously tracks and logs essential data points, stores them in a persistent datastore, and provides access to the data through a REST endpoint
