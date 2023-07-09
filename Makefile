@@ -38,8 +38,8 @@ scan:
 build-common:
 	echo "selecting module $(app)"
 	cd $(app)
-	go clean $(app) 
-	go mod tidy $(app)  && go mod download $(app) 
-	go mod verify $(app) 
+	go clean 
+	go mod tidy  && go mod download 
+	go mod verify 
 	cd ..
 
