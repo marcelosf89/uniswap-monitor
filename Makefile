@@ -6,6 +6,12 @@ up-rebuild:
 up: 
 	@ docker-compose up
 
+build-common:
+	@ echo "selecting module $(app)"
+	@ cd $(app) && go clean  
+	@ @ cd $(app) && go mod tidy $(app)  && go mod download $(app) 
+	@ @ cd $(app) && go mod verify $(app) 
+
 build: build-common
 	@ echo clean
 	@ rm -f $(path).bin/debug/$(app)
@@ -33,13 +39,4 @@ scan:
 	@ echo ""
 	@ cat $(path)$(app).sarif
 
-.ONESHELL:
-
-build-common:
-	echo "selecting module $(app)"
-	cd $(app)
-	go clean 
-	go mod tidy  && go mod download 
-	go mod verify 
-	cd ..
 
