@@ -1,10 +1,10 @@
 path :=$(if $(path), $(path), "./")
 
 up-rebuild: 
-	@ docker-compose up --build
+	@ docker-compose up --build -d
 
 up: 
-	@ docker-compose up
+	@ docker-compose up -d
 
 build-common:
 	@ echo "selecting module $(app)"

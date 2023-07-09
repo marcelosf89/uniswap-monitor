@@ -1,9 +1,9 @@
 package database
 
 import (
-	"brahmafi-build-it/api/pkg/models"
 	"context"
 	"time"
+	"uniswap-monitor/api/pkg/models"
 
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/bson"

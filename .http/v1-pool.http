@@ -1,0 +1,33 @@
+
+/*
+# Pool V1 Endpoints
+*/
+
+
+/*
+## Set Variables
+*/
+
+@endpoint=http://localhost:3030/v1/
+
+/*
+# Get Historic
+
+Get all pool id data point
+*/
+
+
+###
+
+GET {{endpoint}}/api/pool/0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640/historic
+
+/*
+# Get Specific block information
+
+This endpoint get all the data point date to theses specifics blocks if exists
+*/
+
+
+###
+
+GET {{endpoint}}/api/pool/0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640?block=latest

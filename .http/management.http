@@ -1,0 +1,22 @@
+
+/*
+# Management Endpoints
+*/
+
+
+/*
+## Set Variables
+*/
+
+@endpoint=http://localhost:3030/
+
+/*
+## Health check
+
+Test if all the main resources is connected
+*/
+
+
+###
+
+GET {{endpoint}}/health

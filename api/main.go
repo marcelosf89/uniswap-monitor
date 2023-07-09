@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/signal"
 
-	"brahmafi-build-it/api/pkg/api"
-	"brahmafi-build-it/api/pkg/configurations"
-	"brahmafi-build-it/api/pkg/database"
+	"uniswap-monitor/api/pkg/api"
+	"uniswap-monitor/api/pkg/configurations"
+	"uniswap-monitor/api/pkg/database"
 )
 
 func main() {

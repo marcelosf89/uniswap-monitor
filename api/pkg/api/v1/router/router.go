@@ -1,7 +1,7 @@
 package router
 
 import (
-	controllersv1 "brahmafi-build-it/api/pkg/api/v1/controllers"
+	controllersv1 "uniswap-monitor/api/pkg/api/v1/controllers"
 
 	fiber "github.com/gofiber/fiber/v2"
 )

@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	services "brahmafi-build-it/api/pkg/services/v1"
 	"strings"
+	services "uniswap-monitor/api/pkg/services/v1"
 
 	fiber "github.com/gofiber/fiber/v2"
 )

@@ -1,4 +1,4 @@
-module brahmafi-build-it/api
+module uniswap-monitor/api
 
 go 1.20
 

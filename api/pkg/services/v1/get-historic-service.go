@@ -1,7 +1,7 @@
 package services
 
 import (
-	"brahmafi-build-it/api/pkg/database"
+	"uniswap-monitor/api/pkg/database"
 )
 
 type PoolHistoricItemResponse struct {

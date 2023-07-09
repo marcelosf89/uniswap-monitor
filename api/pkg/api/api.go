@@ -7,9 +7,9 @@ import (
 
 	fiber "github.com/gofiber/fiber/v2"
 
-	routermgn "brahmafi-build-it/api/pkg/api/mgn/router"
-	routerv1 "brahmafi-build-it/api/pkg/api/v1/router"
-	"brahmafi-build-it/api/pkg/configurations"
+	routermgn "uniswap-monitor/api/pkg/api/mgn/router"
+	routerv1 "uniswap-monitor/api/pkg/api/v1/router"
+	"uniswap-monitor/api/pkg/configurations"
 )
 
 var fiberApp *fiber.App
