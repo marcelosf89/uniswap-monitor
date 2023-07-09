@@ -51,7 +51,6 @@ jobs:
           make build app=$app
 
       - name: Security Scan 
-        uses: securego/gosec@master
         run: |
           make scan app=$app
           
