@@ -9,8 +9,8 @@ up:
 build-common:
 	@ echo "selecting module $(app)"
 	@ cd $(app) && go clean  
-	@ @ cd $(app) && go mod tidy $(app)  && go mod download $(app) 
-	@ @ cd $(app) && go mod verify $(app) 
+	@ cd $(app) && go mod tidy && go mod download
+	@ cd $(app) && go mod verify
 
 build: build-common
 	@ echo clean
