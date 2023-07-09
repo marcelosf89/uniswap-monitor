@@ -28,7 +28,7 @@ build-release: build-common
 
 
 test: build-common
-	@ cd $(app)  go test -v -cover ./...
+	@ cd $(app) && go test -v -cover ./...
 
 scan:
 	@ go install github.com/securego/gosec/v2/cmd/gosec@latest
