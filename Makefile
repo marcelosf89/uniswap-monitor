@@ -6,13 +6,6 @@ up-rebuild:
 up: 
 	@ docker-compose up
 
-build-common:
-	@ echo "selecting module $(app)"
-	@ go clean $(app) 
-	@ go mod tidy $(app)  && go mod download $(app) 
-	@ go mod verify $(app) 
-
-
 build: build-common
 	@ echo clean
 	@ rm -f $(path)/.bin/debug/$(app)
@@ -39,4 +32,14 @@ scan:
 	@ gosec -fmt=sarif -out=$(app).sarif -exclude=_test -severity=medium ./$(app)/... 
 	@ echo ""
 	@ cat $(path)/$(app).sarif
+
+.ONESHELL:
+
+build-common:
+	echo "selecting module $(app)"
+	cd $(app)
+	go clean $(app) 
+	go mod tidy $(app)  && go mod download $(app) 
+	go mod verify $(app) 
+	cd ..
 
